@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Builder - Install</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 400px;
+    }
+    h1 { margin-bottom: 10px; color: #333; }
+    p { color: #666; margin-bottom: 30px; }
+    .install-form { display: flex; flex-direction: column; gap: 15px; }
+    input {
+      padding: 14px 18px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s;
+    }
+    input:focus { outline: none; border-color: #667eea; }
+    button {
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Theme Builder</h1>
+    <p>Build beautiful Shopify themes with drag & drop</p>
+    <form class="install-form" action="/auth" method="GET">
+      <input 
+        type="text" 
+        name="shop" 
+        placeholder="yourstore.myshopify.com" 
+        required
+        pattern="[a-zA-Z0-9-]+\.myshopify\.com"
+      >
+      <button type="submit">Install App</button>
+    </form>
+  </div>
+</body>
+</html>

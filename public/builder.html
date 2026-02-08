@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Builder</title>
+  <link rel="stylesheet" href="/builder.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar - Elements Panel -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>🎨 Elements</h2>
+      </div>
+      
+      <div class="element-category">
+        <h3>Layout</h3>
+        <div class="elements-grid">
+          <div class="element-item" draggable="true" data-type="section">
+            <span class="element-icon">☐</span>
+            <span>Section</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="container">
+            <span class="element-icon">▢</span>
+            <span>Container</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="row">
+            <span class="element-icon">⊟</span>
+            <span>Row</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="column">
+            <span class="element-icon">▯</span>
+            <span>Column</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="element-category">
+        <h3>Content</h3>
+        <div class="elements-grid">
+          <div class="element-item" draggable="true" data-type="heading">
+            <span class="element-icon">H</span>
+            <span>Heading</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="text">
+            <span class="element-icon">T</span>
+            <span>Text</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="paragraph">
+            <span class="element-icon">¶</span>
+            <span>Paragraph</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="list">
+            <span class="element-icon">☰</span>
+            <span>List</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="element-category">
+        <h3>Media</h3>
+        <div class="elements-grid">
+          <div class="element-item" draggable="true" data-type="image">
+            <span class="element-icon">🖼</span>
+            <span>Image</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="video">
+            <span class="element-icon">▶</span>
+            <span>Video</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="icon">
+            <span class="element-icon">★</span>
+            <span>Icon</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="element-category">
+        <h3>Interactive</h3>
+        <div class="elements-grid">
+          <div class="element-item" draggable="true" data-type="button">
+            <span class="element-icon">⬜</span>
+            <span>Button</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="link">
+            <span class="element-icon">🔗</span>
+            <span>Link</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="input">
+            <span class="element-icon">⌨</span>
+            <span>Input</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="element-category">
+        <h3>Utility</h3>
+        <div class="elements-grid">
+          <div class="element-item" draggable="true" data-type="spacer">
+            <span class="element-icon">↕</span>
+            <span>Spacer</span>
+          </div>
+          <div class="element-item" draggable="true" data-type="divider">
+            <span class="element-icon">—</span>
+            <span>Divider</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main class="canvas-wrapper">
+      <div class="canvas-toolbar">
+        <div class="toolbar-left">
+          <button class="toolbar-btn" id="undoBtn" title="Undo">↩</button>
+          <button class="toolbar-btn" id="redoBtn" title="Redo">↪</button>
+          <span class="toolbar-divider"></span>
+          <select id="viewportSelect">
+            <option value="desktop">🖥 Desktop</option>
+            <option value="tablet">📱 Tablet</option>
+            <option value="mobile">📱 Mobile</option>
+          </select>
+        </div>
+        <div class="toolbar-center">
+          <input type="text" id="sectionName" placeholder="Section Name" value="custom-section">
+        </div>
+        <div class="toolbar-right">
+          <button class="toolbar-btn" id="previewBtn">👁 Preview</button>
+          <button class="toolbar-btn primary" id="exportBtn">💾 Export</button>
+        </div>
+      </div>
+      
+      <div class="canvas-container">
+        <div class="canvas" id="canvas">
+          <div class="canvas-empty">
+            <p>Drag elements here to start building</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Properties Panel -->
+    <aside class="properties-panel" id="propertiesPanel">
+      <div class="properties-header">
+        <h2>Properties</h2>
+        <button class="delete-btn" id="deleteElement" title="Delete">🗑</button>
+      </div>
+      
+      <div class="properties-content" id="propertiesContent">
+        <p class="properties-empty">Select an element to edit its properties</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Export Modal -->
+  <div class="modal" id="exportModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Export Section</h2>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="export-tabs">
+          <button class="export-tab active" data-tab="liquid">Liquid</button>
+          <button class="export-tab" data-tab="css">CSS</button>
+        </div>
+        <div class="export-code">
+          <pre id="liquidCode"></pre>
+          <pre id="cssCode" style="display:none"></pre>
+        </div>
+        <div class="export-actions">
+          <button class="btn" id="copyCode">📋 Copy Code</button>
+          <button class="btn primary" id="saveToTheme">💾 Save to Theme</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/builder.js"></script>
+</body>
+</html>
