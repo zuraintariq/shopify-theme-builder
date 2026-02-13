@@ -165,20 +165,33 @@ body {
   text-align: center;
 }
 
-/* Canvas */
+/* Canvas Container - UPDATED FOR RESPONSIVENESS */
 .canvas-container {
   flex: 1;
   overflow: auto;
   padding: 30px;
   background: #e8e8e8;
+  display: flex;
+  justify-content: center;
 }
 
 .canvas {
+  width: 100%;
   min-height: 600px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.1);
   position: relative;
+  transition: width 0.3s ease;
+}
+
+/* Viewport Preview Sizes */
+.canvas-container.viewport-tablet .canvas {
+  width: 768px;
+}
+
+.canvas-container.viewport-mobile .canvas {
+  width: 375px;
 }
 
 .canvas-empty {
@@ -252,18 +265,34 @@ body {
   padding: 20px;
 }
 
+/* UPDATED ROW AND COLUMN FOR RESPONSIVENESS */
 .el-row {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .el-column {
-  flex: 1;
-  min-width: 100px;
+  flex: 1 1 0%;
+  min-width: 0;
   padding: 10px;
   background: rgba(0,0,0,0.02);
+  box-sizing: border-box;
+}
+
+/* Mobile & Tablet view inside the builder */
+.canvas-container.viewport-tablet .el-row,
+.canvas-container.viewport-mobile .el-row {
+  flex-direction: column;
+}
+
+.canvas-container.viewport-tablet .el-column,
+.canvas-container.viewport-mobile .el-column {
+  width: 100%;
+  flex: none;
 }
 
 .el-heading {
