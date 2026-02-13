@@ -748,9 +748,38 @@ ${liquidContent}
 }
 {% endschema %}`;
 
+    // UPDATED EXPORT CSS FOR RESPONSIVENESS
     const css = `/* ${sectionName} Styles */
 .${sectionName}-wrapper {
   width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Base Responsive Grid (Automatically Exported) */
+.${sectionName}-wrapper .el-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.${sectionName}-wrapper .el-column {
+  flex: 1 1 0%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile Breakpoint for Live Store */
+@media screen and (max-width: 768px) {
+  .${sectionName}-wrapper .el-row {
+    flex-direction: column !important;
+  }
+  .${sectionName}-wrapper .el-column {
+    width: 100% !important;
+    flex: none !important;
+  }
 }
 
 ${cssContent}`;
